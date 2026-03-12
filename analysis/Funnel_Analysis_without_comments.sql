@@ -1,57 +1,44 @@
-## Funnel Analysis
-#--- User Activation Funnel analysis
-
-USE saas_analytics; 
+USE saas_analytics;
 
 WITH step1_signups AS (
-	select user_id, signup_date
-    from users
-    ),
-    
-#-- Users who initiated at least one event
-step2_activated AS (
-	select distinct user_id
-    from events
-    ),
-    
-#--Users who used a core feature 
-step3_core_feature AS (
-	select distinct e.user_id
-    from events e 
-    JOIN features f on o.feature_id = f.feature_id
-    where f.feature_name in ('Dashboard','Analytics','User Management','Mobile App', 'Notifications','Dark Mode','Onboarding Wizard', 'Export to CSV', 'API Access')
-    ),
-    
-#-- Users who upgraded to a paid plan
-step4_upgraded AS (
-	select distinct user_id 
-    from users
-    where plan_tier in ('starter','pro','enterprise')
+    SELECT user_id, signup_date
+    FROM users
 ),
-
-#--Combine all steps
-FUNNEL AS (
-    select
-		count(distinct s1.user_id) as step1_signups,
-        count(distinct s2.user_id) as step2_activated,
-        count(distinct s3.user_id) as step3_core_feature,
-        count(distinct s4.user_id) as step4_upgraded 
-	from step1.signups s1
-    left join step2_activated s2 on s1.user_id = s2.user_id
-    left join step3_core_feature s3 on s1.user_id = s3.user_id
-    left join step4_upgraded s4 on s1.user_id = s4.user_id
+step2_activated AS (
+    SELECT DISTINCT user_id
+    FROM events
+),
+step3_core_feature AS (
+    SELECT DISTINCT e.user_id
+    FROM events e
+    JOIN features f ON e.feature_id = f.feature_id
+    WHERE f.feature_name IN ('Dashboard','Analytics','User Management','Mobile App', 'Notifications','Dark Mode','Onboarding Wizard', 'Export to CSV', 'API Access')
+),
+step4_upgraded AS (
+    SELECT DISTINCT user_id
+    FROM users
+    WHERE plan_tier IN ('starter', 'pro', 'enterprise')
+),
+funnel AS (
+    SELECT
+        COUNT(DISTINCT s1.user_id) AS step1_signups,
+        COUNT(DISTINCT s2.user_id) AS step2_activated,
+        COUNT(DISTINCT s3.user_id) AS step3_core_feature,
+        COUNT(DISTINCT s4.user_id) AS step4_upgraded
+    FROM step1_signups s1
+    LEFT JOIN step2_activated s2 ON s1.user_id = s2.user_id
+    LEFT JOIN step3_core_feature s3 ON s1.user_id = s3.user_id
+    LEFT JOIN step4_upgraded s4 ON s1.user_id = s4.user_id
 )
-
-#---Final output qith drop-off rates
-SELECT 
-	step1_signups,
+SELECT
+    step1_signups,
     step2_activated,
-    ROUND(step2_activated / step1_signups * 100, 1) as percentage_activated,
+    ROUND(step2_activated / step1_signups * 100, 1) AS pct_activated,
     step3_core_feature,
-    ROUND(step3_core_feature / step2_activated * 100, 1) as percentage_used_core,
+    ROUND(step3_core_feature / step2_activated * 100, 1) AS pct_used_core,
     step4_upgraded,
-    ROUND(step4_upgraded / step1_signups * 100, 1) as percentage_upgraded
-FROM FUNNEL;
+    ROUND(step4_upgraded / step1_signups * 100, 1) AS pct_upgraded
+FROM funnel;
 
 #--users who actually used core features but never upgraded
 #--segmnented by usage intensity
