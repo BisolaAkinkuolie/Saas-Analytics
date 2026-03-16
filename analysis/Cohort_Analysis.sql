@@ -38,18 +38,24 @@ retention_counts AS (
 	from cohort_activity
 	where months_since_signup between 0 and 6
     group by cohort_month, months_since_signup
+),
+retention_rates AS (
+	Select
+		r.cohort_month,
+        r.months_since_signup,
+        ROUND (r.retained_users / cs.cohort_size * 100, 1) As retention_rate
+	from retention_counts r
+    join cohort_sizes cs on r.cohort_month = cs.cohort_month
 )
-Select 
-	r.cohort_month,
-    cs.cohort_size,
-    r.months_since_signup,
-    r.retained_users,
-    ROUND(r.retained_users / cs.cohort_size * 100,1) AS retention_rate   ## Final Retention 
-from retention_counts r
-join cohort_sizes cs on r.cohort_month = cs.cohort_month
-order by r.cohort_month,r.months_since_signup
-
-        
+SELECT
+    months_since_signup,
+    COUNT(DISTINCT cohort_month)            AS num_cohorts,
+    ROUND(AVG(retention_rate), 1)           AS avg_retention_rate,
+    ROUND(MIN(retention_rate), 1)           AS worst_cohort_rate,
+    ROUND(MAX(retention_rate), 1)           AS best_cohort_rate
+FROM retention_rates
+GROUP BY months_since_signup
+ORDER BY months_since_signup;
 
 
 
