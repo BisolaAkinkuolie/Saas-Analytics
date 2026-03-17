@@ -1,0 +1,5 @@
+usage_segment,user_count,avg_sessions,avg_events
+"Low (1-5 sessions)",9,5.0,234.4
+"Medium (6-15 sessions)",106,10.4,1058.3
+"High (16-30 sessions)",154,22.9,4905.8
+"Power (30+ sessions)",164,40.8,15370.0

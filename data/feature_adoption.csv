@@ -1,0 +1,21 @@
+feature_name,feature_category,feature_type,unique_users,adoption_rate,total_events,events_per_user
+Analytics,Core,Free,853,85.3,16534,19.4
+"User Management",Core,Free,851,85.1,16527,19.4
+"Dark Mode",Core,Free,851,85.1,16602,19.5
+"API Access",Core,Free,850,85.0,16237,19.1
+"Export to CSV",Core,Free,850,85.0,16746,19.7
+Notifications,Core,Free,850,85.0,16871,19.8
+Dashboard,Core,Free,849,84.9,16678,19.6
+"Onboarding Wizard",Core,Free,849,84.9,16666,19.6
+"Mobile App",Core,Free,848,84.8,16643,19.6
+"Custom Reports",Advanced,Premium,420,42.0,5335,12.7
+"Team Collaboration",Advanced,Premium,420,42.0,5186,12.3
+"White Labeling",Enterprise,Premium,419,41.9,5219,12.5
+"Audit Logs",Enterprise,Premium,418,41.8,5267,12.6
+"Priority Support",Enterprise,Premium,418,41.8,5082,12.2
+"Dedicated Manager",Enterprise,Premium,418,41.8,5208,12.5
+"Data Warehouse Sync",Enterprise,Premium,418,41.8,5151,12.3
+Webhooks,Advanced,Premium,417,41.7,5102,12.2
+"SSO Login",Advanced,Premium,417,41.7,5193,12.5
+"Custom SLA",Enterprise,Premium,417,41.7,5228,12.5
+Integrations,Advanced,Premium,416,41.6,5246,12.6

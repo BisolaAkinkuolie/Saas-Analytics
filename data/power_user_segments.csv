@@ -1,0 +1,5 @@
+user_segment,user_count,avg_sessions,avg_events,avg_features_used,avg_active_months,avg_events_per_session
+Champion,354,38.3,350.0,16.9,25.0,9.1
+"Power User",289,23.2,210.0,13.7,24.9,9.2
+Regular,138,14.2,123.0,12.1,24.0,8.8
+Casual,219,2.9,23.6,2.9,7.5,8.2
