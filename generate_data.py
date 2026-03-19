@@ -163,7 +163,7 @@ for i in range(0, len(batch_events), batch_size):
         VALUES (%s, %s, %s, %s, %s)
     """, batch_events[i:i+batch_size])
     connection.commit()
-    print(f"   Inserted {min(i+batch_size, len(batch_events))} / {len(batch_events)} events")
+    print(f"Inserted {min(i+batch_size, len(batch_events))} / {len(batch_events)} events")
 
 total_events = len(batch_events)
 

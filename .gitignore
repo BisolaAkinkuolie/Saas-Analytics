@@ -14,3 +14,5 @@ secrets.py
 # OS
 .DS_Store
 Thumbs.db
+
+.venv/
