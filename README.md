@@ -172,6 +172,12 @@ Demonstrates the full optimization cycle — baseline measurement, EXPLAIN analy
 
 ---
 
+
+##  Live Dashboard
+
+**[View the interactive dashboard here](https://saas-analytics-dysh6hlcgrgndru3gauw4w.streamlit.app/)**
+
+---
 ## Author
 
 Bisola Akinkuolie
