@@ -1,4 +1,4 @@
-# SaaS Product Analytics Engine
+# SaaS Product Analytics Platform
 
 An end-to-end product analytics system built with MySQL and Python, simulating the analytics infrastructure I would  own at a B2B SaaS , Iaas, Paas company.
 
