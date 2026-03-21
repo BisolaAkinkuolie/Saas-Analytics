@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title(" SaaS Product Analytics Engine")
+st.title(" SaaS Product Analytics Platform")
 st.markdown("""
 A end-to-end product analytics system simulating the analytics 
 infrastructure a product data scientist would own at a B2B SaaS company.
